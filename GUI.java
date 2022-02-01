@@ -2,7 +2,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Properties;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -42,7 +41,6 @@ public class GUI implements ActionListener{  // main class
 	FormatMenu format = new FormatMenu(this);
 	ThemeMenu theme = new ThemeMenu(this);
 	KeyShorts key = new KeyShorts(this);
-	Config config = new Config(this);
 	
 	public static void main(String[] args) throws Exception{  //main method
 		new GUI();}
@@ -56,10 +54,11 @@ public class GUI implements ActionListener{  // main class
 		formatMenu();
 		colorMenu();
 		configMaker();
-		frame.setVisible(true);
 		format.sFont = "Arial";
 		format.font(16);
-		config.read();
+		format.WordWrap = true;
+		format.wordWrap();
+		frame.setVisible(true);
 	}
 	
 	public void frame() {
@@ -214,7 +213,7 @@ public class GUI implements ActionListener{  // main class
 		themeMenu.add(blue);
 	}
 	
-	public void configMaker() throws IOException {
+	public void configMaker() throws Exception {
 		File f = new File("TYPER.properties");
 		if (f.exists() != true) {
     		Properties pm = new Properties();  
@@ -222,12 +221,7 @@ public class GUI implements ActionListener{  // main class
     		pm.setProperty("font","arial");
     		pm.setProperty("font-size","16");
     		pm.setProperty("word-wrap","true");
-    		pm.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		
-		}else {
-		if(config.p.getProperty("font") == "arial"){format.sFont("Arial");}
-		else if(config.p.getProperty("font") == "Comic Sans MS"){format.sFont("Comic Sans MS");}
-		else if(config.p.getProperty("font") == "Times New Roman"){format.sFont("Times New Roman");}}
+    		pm.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");}
 		}
 
 	@Override
@@ -241,56 +235,25 @@ public class GUI implements ActionListener{  // main class
 		case "Exit": file.fileExit();break;
 		case "undo": edit.undo();break;
 		case "redo": edit.redo();break;
-		case "WordWrap":try {
-				format.wordWrap();
-			} catch (IOException e1) {}break;
-		case "Arial": try {
-				format.sFont("Arial");
-			} catch (IOException e1) {}break;
-		case "CMS": try {
-				format.sFont("Comic Sans MS");
-			} catch (IOException e1) {
-			}break;
-		case "TNR": try {
-				format.sFont("Times New Roman");
-			} catch (IOException e1) {
-			}break;
+		case "WordWrap":format.wordWrap();
 			
-		case "fs8": try {
-				config.p.setProperty("font-size","8");
-	    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-	    		format.font(8);
-			} catch (IOException e1) {}break;
+		case "Arial": format.sFont("Arial");break;
+		
+		case "CMS": format.sFont("Comic Sans MS");break;
+		
+		case "TNR": format.sFont("Times New Roman");break;
 			
-		case "fs12": try {
-			config.p.setProperty("font-size","12");
-    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		format.font(8);
-		} catch (IOException e1) {}break;
+		case "fs8": format.font(8);break;
+			
+		case "fs12": format.font(8);break;
 		
-		case "fs16": try {
-			config.p.setProperty("font-size","16");
-    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		format.font(8);
-		} catch (IOException e1) {}break;
+		case "fs16": format.font(8);break;
 		
-		case "fs20": try {
-			config.p.setProperty("font-size","20");
-    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		format.font(8);
-		} catch (IOException e1) {}break;
+		case "fs20":format.font(20);;break;
 		
-		case "fs24": try {
-			config.p.setProperty("font-size","24");
-    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		format.font(8);
-		} catch (IOException e1) {}break;
+		case "fs24":format.font(8);break;
 		
-		case "fs28": try {
-			config.p.setProperty("font-size","28");
-    		config.p.store(new FileWriter("TYPER.properties"), "TYPER CONFIG FILE");
-    		format.font(28);
-		} catch (IOException e1) {}break;
+		case "fs28":format.font(28);break;
 		
 		case "dark": theme.sColor(cmd);
 		case "light": theme.sColor(cmd);
