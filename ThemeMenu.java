@@ -1,11 +1,10 @@
 import java.awt.Color;
 
 public class ThemeMenu {
-	GUI gui;
+	Gui gui;
 	
-	public ThemeMenu(GUI gui) {
-		this.gui = gui;
-	}
+	public ThemeMenu(Gui gui) {
+		this.gui = gui;}
 	
 	public void sColor(String color) {
 		switch(color) {
@@ -16,10 +15,10 @@ public class ThemeMenu {
 			break;
 			
 		case "dark":
-		gui.frame.getContentPane().setBackground(Color.BLACK);
-		gui.textArea.setBackground(Color.BLACK);
-		gui.textArea.setForeground(Color.WHITE);
-		break;
+			gui.frame.getContentPane().setBackground(Color.BLACK);
+			gui.textArea.setBackground(Color.BLACK);
+			gui.textArea.setForeground(Color.WHITE);
+			break;
 		
 		case "pain":
 			gui.frame.getContentPane().setBackground(Color.RED);
@@ -31,8 +30,7 @@ public class ThemeMenu {
 			gui.frame.getContentPane().setBackground(Color.BLUE);
 			gui.textArea.setBackground(Color.BLUE);
 			gui.textArea.setForeground(Color.LIGHT_GRAY);
-			break;
-		}
+			break;}
 	}
 	
 }

@@ -1,8 +1,8 @@
 public class EditMenu {
 	
-	GUI gui;
+	Gui gui;
 	
-	public EditMenu(GUI gui) {
+	public EditMenu(Gui gui) {
 		this.gui = gui;
 	}
 	

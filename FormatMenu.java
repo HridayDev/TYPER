@@ -1,12 +1,12 @@
 import java.awt.Font;
 
 public class FormatMenu {
-	GUI gui;
+	Gui gui;
 	Font arial, comicSansMS, timesNewRoman;
 	String sFont;
 	public boolean WordWrap;
 	
-	public FormatMenu(GUI gui) {
+	public FormatMenu(Gui gui) {
 		this.gui = gui;
 	}
 	
